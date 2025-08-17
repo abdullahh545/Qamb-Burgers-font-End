@@ -1,0 +1,52 @@
+/* Sidebar container */
+.Sidebar {
+  width: 160px; /* slightly smaller */
+  height: 100vh;
+  position: fixed; /* fixed to the left */
+  top: 0;
+  left: 0;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px; /* less padding to make it feel slimmer */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* ensures it stays above content */
+}
+
+/* Logo at the top */
+.Sidebar .logo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: left;
+  color: black;
+}
+
+/* Navigation links container */
+#nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* slightly smaller gap */
+  width: 100%;
+}
+
+/* Each link style */
+#nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 6px 8px;
+  transition: color 0.2s, font-weight 0.2s;
+}
+
+/* Hover effect */
+#nav-links a:hover {
+  color: #ff4500;
+  font-weight: bold;
+}
+
+/* Main content pushed to the right */
+.main-content {
+  margin-left: 160px; /* same as sidebar width */
+  padding: 20px;
+}
