@@ -2,17 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //   const handleOrderNow = () => {
-  //     navigate("/menu");
-  //   };
+  const handleOrderNow = () => {
+    navigate("/menu");
+  };
   return (
     <>
       <section>
         <h1>Welcome to Qamb Burgers</h1>
         <p> Fresh, Juicy. Made with love.</p>
-        <button>Order Now</button>
+        <button onClick={handleOrderNow}>Order Now</button>
       </section>
 
       <section className="About-Section">

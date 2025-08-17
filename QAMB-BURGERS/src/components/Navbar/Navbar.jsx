@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -6,7 +7,7 @@ function Navbar() {
     <div className="Sidebar">
       <div className="logo">🍔 Qamb Burgers </div>
       <nav id="nav-links">
-        <a href="/home">🏠</a>
+        <a href="/">🏠</a>
         <a href="/Menu">🍔Menu</a>
         <a href="/Cart">Your Cart</a>
         <a href="/order">Order Now</a>
