@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function MenuPage(cart, setCart) {
+function MenuPage({ cart, setCart }) {
   const navigate = useNavigate();
+
+  // list of products
   const products = [
     {
       id: 1,
@@ -34,52 +36,82 @@ function MenuPage(cart, setCart) {
     { id: 9, name: "Milkshake", price: 3.99, category: "Drinks" },
   ];
 
+  // add product to cart
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) {
+      // update quantity
+      const updatedCart = cart.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
-  const getProductsByCategory = (category) =>
-    products.filter((p) => p.category === category);
+
+  // get quantity of a product in cart
+  const getQuantity = (productId) => {
+    const item = cart.find((i) => i.id === productId);
+    if (item) return item.quantity;
+    return 0;
+  };
+
+  // get products by category
+  const getProductsByCategory = (category) => {
+    return products.filter((p) => p.category === category);
+  };
+
+  // total items in cart
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div>
       <h1>Our Menu</h1>
-      <button onClick={() => navigate("/cart")}>Your Cart {cart.length}</button>
 
-      <section className="Burgers">
-        <h2>Burgers 🍔</h2>
-        <ul>
-          {getProductsByCategory("Burgers").map((product) => (
-            <li key={product.id}>
-              {product.name} -${product.price.toFixed(2)}
-              <p>{product.description}</p>
-              <button onClick={() => addToCart(product)}>Add To Cart</button>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <button onClick={() => navigate("/cart")}>
+        View Your Cart ({totalItems})
+      </button>
 
-      <section className="fries">
-        <h2>Sides 🍟</h2>
-        <ul>
-          {getProductsByCategory("Sides").map((product) => (
-            <li key={product.id}>
-              {product.name} -${product.price.toFixed(2)}
-              <button onClick={() => addToCart(product)}>Add To Cart</button>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <h2>Burgers 🍔</h2>
+      <ul>
+        {getProductsByCategory("Burgers").map((product) => (
+          <li key={product.id}>
+            {product.name} - ${product.price.toFixed(2)}
+            <p>{product.description}</p>
+            <button onClick={() => addToCart(product)}>
+              Add To Cart ({getQuantity(product.id)})
+            </button>
+          </li>
+        ))}
+      </ul>
 
-      <section className="drinks">
-        <h2>Drinks 🥤</h2>
-        <ul>
-          {getProductsByCategory("Drinks").map((product) => (
-            <li key={product.id}>
-              {product.name} -${product.price.toFixed(2)}
-              <button onClick={() => addToCart(product)}>+</button>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <h2>Sides 🍟</h2>
+      <ul>
+        {getProductsByCategory("Sides").map((product) => (
+          <li key={product.id}>
+            {product.name} - ${product.price.toFixed(2)}
+            <button onClick={() => addToCart(product)}>
+              Add To Cart ({getQuantity(product.id)})
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Drinks 🥤</h2>
+      <ul>
+        {getProductsByCategory("Drinks").map((product) => (
+          <li key={product.id}>
+            {product.name} - ${product.price.toFixed(2)}
+            <button onClick={() => addToCart(product)}>
+              Add To Cart ({getQuantity(product.id)})
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
