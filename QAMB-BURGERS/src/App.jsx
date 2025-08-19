@@ -18,7 +18,7 @@ function App() {
           />
           <Route
             path="/cart"
-            element={<cartPage cart={cart} setCart={setCart} />}
+            element={<CartPage cart={cart} setCart={setCart} />}
           />
         </Routes>
       </div>
