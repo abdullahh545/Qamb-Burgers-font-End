@@ -1,7 +1,7 @@
 import React from "react";
 function Footer() {
   return (
-    <Footer style={{
+    <footer style={{
       backgroundColor: "#222",
       color: "#fff",
       textAlign: "center",
@@ -9,9 +9,11 @@ function Footer() {
       marginTop: "20px" 
     }}>
     <p>burgerhouse@ {new Date().getFullYear()}</p>
-    <P>MADE W LOVE BY QAMB TEAM CUME ENNJOYY</P>
-    </Footer>
+    <p>MADE W LOVE BY QAMB TEAM CUME ENNJOYY</p>
+    </footer>
 
   )
 
 }
+
+export default Footer;

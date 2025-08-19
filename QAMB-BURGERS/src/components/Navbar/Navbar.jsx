@@ -5,7 +5,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <div className="Sidebar">
-      <div className="logo">🍔 Qamb Burgers </div>
+      <div className="logo">🍔 Burgers </div>
       <nav id="nav-links">
         <a href="/">🏠</a>
         <a href="/Menu">🍔Menu</a>
